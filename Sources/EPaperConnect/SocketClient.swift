@@ -8,10 +8,20 @@
 import Foundation
 
 class SocketClient: NSObject {
-    private var webSocket: URLSessionWebSocketTask?
-    override init() {
-        webSocket = URLSession.shared.webSocketTask(with: URL(string: "ws://192.168.22.205:5000")!)
-        webSocket?.resume()
+    private let url: URL
+    private lazy var webSocket: URLSessionWebSocketTask = {
+        session.webSocketTask(with: url)
+    }()
+    private lazy var session = URLSession(configuration: .default,
+                                     delegate: self,
+                                     delegateQueue: OperationQueue())
+    init(urlString: String) {
+        self.url = URL(string: urlString)!
+        super.init()
+    }
+    
+    func connect() {
+        webSocket.resume()
     }
 }
 
