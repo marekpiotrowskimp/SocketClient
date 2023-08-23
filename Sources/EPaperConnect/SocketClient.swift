@@ -7,7 +7,7 @@
 
 import Foundation
 
-class SocketClient: NSObject {
+public class SocketClient: NSObject {
     private let url: URL
     private lazy var webSocket: URLSessionWebSocketTask = {
         session.webSocketTask(with: url)
@@ -26,7 +26,7 @@ class SocketClient: NSObject {
 }
 
 extension SocketClient: URLSessionWebSocketDelegate {
-    func urlSession(_ session: URLSession, webSocketTask: URLSessionWebSocketTask, didOpenWithProtocol protocol: String?) {
+    public func urlSession(_ session: URLSession, webSocketTask: URLSessionWebSocketTask, didOpenWithProtocol protocol: String?) {
         print("Connect")
     }
 }
