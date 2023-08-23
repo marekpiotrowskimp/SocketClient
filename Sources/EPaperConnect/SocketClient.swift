@@ -15,12 +15,12 @@ class SocketClient: NSObject {
     private lazy var session = URLSession(configuration: .default,
                                      delegate: self,
                                      delegateQueue: OperationQueue())
-    init(urlString: String) {
+    public init(urlString: String) {
         self.url = URL(string: urlString)!
         super.init()
     }
     
-    func connect() {
+    public func connect() {
         webSocket.resume()
     }
 }
